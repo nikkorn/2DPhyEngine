@@ -4,16 +4,23 @@
 <head>
   <meta charset="utf-8">
 </head>
-<body onkeydown="return userControl(event);">
+<body onkeydown="return userControl(event);" onload="var game = new MyGame(); gEngine.Core.initialiseEngineCore();">
   <table>
     <tr>
       <td>
-        <canvas id="canvas"></canvas>
+        <canvas id="canvas" style="border-style: dotted;"></canvas>
+      </td>
+      <td>
+        <div id="uiEchoString"></div>
       </td>
     </tr>
   </table>
   <script src="Core/Core.js"></script>
   <script src="UserControl.js"></script>
   <script src="Lib/Vec2.js"></script>
+  <script src="RigidBody/RigidShape.js"></script>  
+  <script src="RigidBody/Circle.js"></script>  
+  <script src="RigidBody/Rectangle.js"></script>     
+  <script src="MyGame.js"></script>
 </body>
 </html>

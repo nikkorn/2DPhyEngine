@@ -1,3 +1,4 @@
+var gObjectNum = 0;
 
 /**
  * Process keyboard input.
@@ -19,18 +20,27 @@ function userControl(event) {
 
     // Create a random rectangle on the press of the 'F' key.
     if (keyCode === 70) {
-        context.strokeRect(Math.random() * width * 0.8,
-            Math.random() * height * 0.8,
+        var r1 = new Rectangle(new Vec2(Math.random() * width * 0.8, Math.random() * height * 0.8),
             Math.random() * 30 + 10, Math.random() * 30 + 10);
     }
 
     // Create a random circle on the press of the 'G' key.
     if (keyCode === 71) {
-        context.beginPath();
-        context.arc(Math.random() * width * 0.8,
-            Math.random() * height * 0.8,
-            Math.random() * 30 + 10, 0, Math.PI * 2, true);
-        context.closePath();
-        context.stroke();
+        var r1 = new Circle(new Vec2(Math.random() * width * 0.8, Math.random() * height * 0.8),
+            Math.random() * 10 + 20);
     }
-}
+
+    // Select object index.
+    if (keyCode >= 48 && keyCode <= 57) {
+        if (keyCode - 48 < gEngine.Core.mAllObjects.length)
+            gObjectNum = keyCode - 48;
+    }
+    if (keyCode === 38) { // up arrow
+        if (gObjectNum > 0)
+            gObjectNum --;
+    }
+    if (keyCode === 40) { // down arrow
+        if (gObjectNum < gEngine.Core.mAllObjects.length - 1)
+            gObjectNum ++;
+    }
+};

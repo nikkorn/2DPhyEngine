@@ -1,5 +1,5 @@
 var Rectangle = function (center, width, height) {
-    RigidBody.call(this, center);
+    RigidShape.call(this, center);
     this.mType   = "Rectangle";
     this.mWidth  = width;
     this.mHeight = height;
@@ -24,6 +24,14 @@ var Rectangle = function (center, width, height) {
     this.mFaceNormal[3] = this.mFaceNormal[3].normalise();
 };
 
-var prototype         = Object.create(RigidBody.prototype);
+var prototype         = Object.create(RigidShape.prototype);
 prototype.constructor = Rectangle;
 Rectangle.prototype   = prototype;
+
+Rectangle.prototype.draw = function (context) {
+    context.save();
+    context.translate(this.mVertex[0].x, this.mVertex[0].y);
+    context.rotate(this.mAngle);
+    context.strokeRect(0, 0, this.mWidth, this.mHeight);
+    context.restore();
+};
